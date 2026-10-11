@@ -36,25 +36,22 @@ function App() {
       //maps on recipes to see the id matches to set isFavourite
       recipes.map((recipe) =>
         //condition to set or remove isFavourite
-        // هل رقم هذي الوصفة نفس الرقم اللي بدنا نغيره؟
         recipe.id === id
-          ? //لو الشرط صح انشئ اوبجكت جديد
-            //  ...recipe = انسخ كل خصائص الوصفة (id, name, ingredients).
-            // وبعدين أضف/عدل خاصية. عكس قيمتها الحالية
+          ?
             { ...recipe, isFavourite: !recipe.isFavourite }
-          : //: ارجعلي الوصفة كما هي، بدون أي تغيير.
+          :
             recipe,
       ),
     );
   };
 
   const handleAddRecipe = () => {
-    // 1. تحقق إن الاسم مش فاضي
+    // 1. verify that name is not empty
     if (newName.trim() === "") {
       return;
     }
 
-    // 2. أنشئ وصفة جديدة
+    // 2 add new recipe
     const newRecipe = {
       id: Date.now(),
       name: newName,
@@ -62,10 +59,10 @@ function App() {
       isFavourite: false,
     };
 
-    // 3. أضفها للstate
+    // 3.Add to state
     setRecipes([...recipes, newRecipe]);
 
-    // 4. صفّر الـ inputs
+    // 4.inputs =0
     setNewName("");
     setNewIngredients("");
   };
